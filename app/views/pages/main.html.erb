@@ -5,7 +5,11 @@
     <% else %>
     	redirect_to root_path
     <% end %>
-<h2>Edit Organization</h2>
+    <% if current_user.org_id = nil%>
+        Testttt
+    
+
+<h2>Organizations</h2>
 <table >
     <tbody>
     <% @organizations.each do |org| %>
@@ -33,9 +37,10 @@
                             <%= text_field_tag :rate, nil, placeholder: "Rate", :required => 'required'%>
                         </div>
                     </div>                </div>
-                <%= submit_tag 'Update'%>
-                <h3><a href = '\'>Delete</a></h3>
+                <%= submit_tag 'Create and Join'%>
 				</form><% end %>
-
+<% else %>
+        redirect_to root_path
+    <% end %>
 
 	

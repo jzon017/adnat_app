@@ -1,0 +1,49 @@
+<h1><a href = '\'>Adnat</a></h1>
+<h2>Login</h2>
+
+
+<div class="container" style="margin-bottom: 20px;">
+    <div class="row">
+        <div class="col-md-6 col-centered" style="margin-top: 10px;">
+                    <% flash.each do |key, value|%>
+                        <div class="flash <%=key%>">
+                            <%= value %>
+                        </div>
+                    <% end %>
+            <%= form_tag '/new' do %>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  <form class="form form-signup" role="form">
+                    <div class="form-group">
+                        <div class="input-group" id="lName">
+                            
+                            <%= text_field_tag :name, nil, class: 'form-control',placeholder: "Name", :required => 'required'%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" id="eAdd">
+                            
+                            <%= text_field_tag :email, nil, class: 'form-control',placeholder: "E-mail", :required => 'required'%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" id="pWord">
+
+                            <%= password_field_tag :password, nil, class: 'form-control',placeholder: "Password", :required => 'required'%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" id="cpWord">
+
+                            <%= password_field_tag :cpassword, nil, class: 'form-control',placeholder: "Confirm Password", :required => 'required'%>
+                        </div>
+                    </div>
+                </div>
+                <%= submit_tag 'Sign up'%>
+				<h3><a href = '\'>Login</a></h1></form><% end %>
+                </div>
+        </div>
+    </div>
+</div>
+
+</div> 
