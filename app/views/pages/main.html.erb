@@ -3,19 +3,16 @@
     <% if current_user%>
         Signed in as <%= current_user.name %><li><%= link_to 'Log out', signout_path%></li>
     <% else %>
-    	redirect_to root_path
+    	redirect_to root_path 
     <% end %>
-    <% if current_user.org_id = nil%>
-        Testttt
-    
-
-<h2>Organizations</h2>
+<% if current_user.org_id == nil %>
+    <h2>Organizations</h2>
 <table >
     <tbody>
     <% @organizations.each do |org| %>
-  	<tr>
-    <td><%= org.orgname %></td> <td><a href = /edit>Edit</a></td><td><a href = /join>Join</a></td>
-  	</tr>
+    <tr>
+    <td><%= org.orgname %></td> <td><%= link_to pages_organizations_path(:org_id => org.org_id) do %>Edit<% end %></td><td><a href = /join>Join</a></td>
+    </tr>
     <% end %>
     </tbody>
     </table>
@@ -36,11 +33,19 @@
                             
                             <%= text_field_tag :rate, nil, placeholder: "Rate", :required => 'required'%>
                         </div>
-                    </div>                </div>
+                    </div>                
+                </div>
                 <%= submit_tag 'Create and Join'%>
-				</form><% end %>
+            </div>
+                </form>
+                <% end %>
+
 <% else %>
-        redirect_to root_path
-    <% end %>
+<%    users = User.find_by(id: current_user.id) %>
+ <%    orgs = Org.find_by(org_id: users.org_id) %>
+ <h2><%= orgs.orgname %></h2>
+ <a href = /edit>View Shifts</a>&nbsp;<a href = organizations>Edit</a>&nbsp;<a href = /edit>Leave</a>
+ <% end %>
+
 
 	

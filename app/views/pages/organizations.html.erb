@@ -5,37 +5,32 @@
     <% else %>
     	redirect_to root_path
     <% end %>
-<h2>Edit Organization</h2>
-<table >
-    <tbody>
-    <% @organizations.each do |org| %>
-  	<tr>
-    <td><%= org.orgname %></td> <td><a href = /edit>Edit</a></td><td><a href = /join>Join</a></td>
-  	</tr>
-    <% end %>
-    </tbody>
-    </table>
 
-<h2>Create Organization</h2>
-<%= form_tag '/createorg' do %>
+    <h2>Edit Organization</h2>
+<%= form_tag '/editorg' do %>
+<% a = Org.find_by(params[:org_id]) %>
+
             <div class="panel panel-default">
                 <div class="panel-body">
                   <form class="form form-signup" role="form">
                     <div class="form-group">
+                        
                         <div class="input-group" id="lName">
-                            
+                            Name: 
                             <%= text_field_tag :orgname, nil,placeholder: "Name", :required => 'required'%>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group" id="eAdd">
-                            
-                            <%= text_field_tag :rate, nil, placeholder: "Rate", :required => 'required'%>
+                            Hourly Rate: 
+                            <%= text_field_tag :rate, nil, placeholder: "Rate", :required => 'required'%> per hour
                         </div>
-                    </div>                </div>
-                <%= submit_tag 'Update'%>
-                <h3><a href = '\'>Delete</a></h3>
-				</form><% end %>
+                    </div>                
+                </div>
+
+                <%= button_tag 'Update', value: a.org_id, type: :submit, name: :org_id%>                
+                <h3><%= link_to 'Delete', pages_delete_path(org_id: a.org_id), method: :delete =%></h3>
+            </div>
+				<% end %></form>
 
 
-	

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions
+  
 
   get 'pages/organizations'
 
@@ -30,5 +31,11 @@ Rails.application.routes.draw do
 
   get 'createorg', to: 'pages#main'
   post 'createorg', to: 'pages#getorg'
+
+
+  get 'editorg', to: 'pages#main'
+  post 'editorg', to: 'pages#orgedit'
+
+  match '/pages/delete', to: 'pages#delete', via: :delete
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
