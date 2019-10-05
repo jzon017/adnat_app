@@ -37,5 +37,7 @@ Rails.application.routes.draw do
   post 'editorg', to: 'pages#orgedit'
 
   match '/pages/delete', to: 'pages#delete', via: :delete
+  get 'pages/leave', to: 'pages#leave'
+  get 'pages/join', to: 'pages#join'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

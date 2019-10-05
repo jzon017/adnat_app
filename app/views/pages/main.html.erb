@@ -11,7 +11,7 @@
     <tbody>
     <% @organizations.each do |org| %>
     <tr>
-    <td><%= org.orgname %></td> <td><%= link_to pages_organizations_path(:org_id => org.org_id) do %>Edit<% end %></td><td><a href = /join>Join</a></td>
+    <td><%= org.orgname %></td> <td><%= link_to pages_organizations_path(:org_id => org.org_id) do %>Edit<% end %></td><td><%= link_to 'Join', pages_join_path(org_id: org.org_id) %></td>
     </tr>
     <% end %>
     </tbody>
@@ -44,7 +44,7 @@
 <%    users = User.find_by(id: current_user.id) %>
  <%    orgs = Org.find_by(org_id: users.org_id) %>
  <h2><%= orgs.orgname %></h2>
- <a href = /edit>View Shifts</a>&nbsp;<a href = organizations>Edit</a>&nbsp;<a href = /edit>Leave</a>
+ <a href = /edit>View Shifts</a>&nbsp;<a href = organizations>Edit</a>&nbsp;<%= link_to 'Leave', pages_leave_path(org_id: current_user.org_id) %>
  <% end %>
 
 

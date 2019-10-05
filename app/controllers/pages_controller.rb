@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
-  
+  before_action :authorize, except: [:home]
   def home
+  	if current_user != nil
+  		redirect_to pages_main_path
+  	end
   end
 
   def organizations
@@ -55,7 +58,7 @@ class PagesController < ApplicationController
 						
 				#Notification success na nakapagcreate na				
 			else
-				aEdit = Org.where(org_id: params[:prev_id])
+				aEdit = Org.where(org_id: params[:org_id])
 				aEdit.update(orgname: params[:orgname], rate: params[:rate])
 				flash[:success] = "Updated!"
 
@@ -67,8 +70,20 @@ class PagesController < ApplicationController
 	end
   end
 
+  def join
+  	a = User.find_by_id(current_user.id)
+  	a.update(org_id: params[:org_id])
+  	redirect_to pages_main_path
+  end
+  def leave
+  	a = User.find_by(org_id: params[:org_id])
+  	a.update(org_id: nil)
+  	redirect_to pages_main_path
+  end
+
   def delete
   	Org.find(params[:org_id]).destroy
+  	redirect_to pages_main_path
   end
 
 end

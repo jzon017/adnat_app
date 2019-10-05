@@ -27,8 +27,9 @@
                         </div>
                     </div>                
                 </div>
+                <%= hidden_field_tag :org_id, a.org_id %>
+                <%= submit_tag 'Update'%>      
 
-                <%= button_tag 'Update', value: a.org_id, type: :submit, name: :org_id%>                
                 <h3><%= link_to 'Delete', pages_delete_path(org_id: a.org_id), method: :delete =%></h3>
             </div>
 				<% end %></form>
