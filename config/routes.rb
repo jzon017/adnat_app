@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get 'pages/shifts'
 
+  get 'shifts/shifts'
+
   get 'users/new'
   get 'new', to: 'users#new'
   post 'new', to: 'users#create'
@@ -36,8 +38,16 @@ Rails.application.routes.draw do
   get 'editorg', to: 'pages#main'
   post 'editorg', to: 'pages#orgedit'
 
+  get 'shifts', to: 'shifts#shiftmain'
+  post 'shifts', to: 'shifts#add_shift'
+
+  get 'shifts', to: 'shifts#shift_out'
+  post 'shifts', to: 'shifts#shift_out'
+
   match '/pages/delete', to: 'pages#delete', via: :delete
+
   get 'pages/leave', to: 'pages#leave'
+
   get 'pages/join', to: 'pages#join'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

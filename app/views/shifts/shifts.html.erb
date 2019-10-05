@@ -1,0 +1,58 @@
+<h1><a href = '\'>Adnat</a></h1>
+
+<% if current_user%>
+        Signed in as <%= current_user.name %><li><%= link_to 'Log out', signout_path%></li>
+<% else %>
+    	redirect_to root_path
+<% end %>
+
+<% orgs = Org.find_by(org_id: current_user.org_id) %>
+<h2><%= orgs.orgname %></h2>
+
+<h2>Shifts</h2>
+
+	<%= form_tag '/shift_out' do %>
+                        
+                    
+                    <div>Shift Date:  
+                    <%= date_field_tag :date, nil, class: 'form-control', placeholder: "Start Date (YYYY-MM-DD)", :required => 'required'%>
+                    </div>
+                    <div>Start Time:
+                    <%= time_field_tag :time1, nil, class: 'form-control', placeholder: "End Date (YYYY-MM-DD)", :required => 'required'%>
+                    </div>
+                    <div>Finish Time:
+                    <%= time_field_tag :time2, nil, class: 'form-control', placeholder: "End Date (YYYY-MM-DD)", :required => 'required'%>
+                    </div>
+                    <div>Break length: 
+                    <%= text_field_tag :breaklength, nil, :required => 'required'%>
+                    </div>
+        <%= submit_tag 'Submit' %>
+    </form>
+    <%end%>  
+<table>
+<thead>
+    <tr>
+    <th> Employee Name</th>
+    <th> Shift Date</th>
+    <th> Start Time</th>
+    <th> Finish Time</th>
+    <th> Break Length</th>
+    <th> Hours Worked</th>
+    <th> Shift Cost</th>
+    </tr>
+</thead>
+          
+<tbody>
+<% @shift.each do |shi| %>
+    <tr>
+    <td><%= shi.id %></td>
+    <td><%= shi.shiftdate %></td>
+    <td><%= shi.start %></td>
+    <td><%= shi.finish %></td>
+    <td><%= shi.breaktime %></td> 
+    <td><%= shi.hrsworked %></td>
+    <td><%= shi.shiftcost %></td> 
+    </tr>
+</tbody>
+<% end %>
+</table>

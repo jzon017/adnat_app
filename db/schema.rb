@@ -10,21 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191003025035) do
+ActiveRecord::Schema.define(version: 20191005114557) do
 
-  create_table "orgs", primary_key: "org_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "orgs", primary_key: "org_id", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "orgname", limit: 45
     t.float "rate", limit: 24
   end
 
-  create_table "shifts", primary_key: "shiftid", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shifts", primary_key: "shiftid", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "id"
-    t.time "start"
-    t.time "finish"
-    t.date "shiftdate"
-    t.integer "breaktime"
-    t.float "hrsworked", limit: 24
-    t.float "shiftcost", limit: 24
+    t.datetime "start"
+    t.datetime "finish"
+    t.integer "breaklength"
   end
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
