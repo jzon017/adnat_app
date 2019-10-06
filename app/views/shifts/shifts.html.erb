@@ -15,13 +15,13 @@
                         
                     
                     <div>Shift Date:  
-                    <%= date_field_tag :date, nil, class: 'form-control', placeholder: "Start Date (YYYY-MM-DD)", :required => 'required'%>
+                    <%= date_field_tag :date, nil, class: 'form-control', placeholder: "Shift Date (YYYY-MM-DD)", :required => 'required'%>
                     </div>
                     <div>Start Time:
-                    <%= time_field_tag :time1, nil, class: 'form-control', placeholder: "End Date (YYYY-MM-DD)", :required => 'required'%>
+                    <%= time_field_tag :time1, nil, class: 'form-control', placeholder: "Start Time (YYYY-MM-DD)", :required => 'required'%>
                     </div>
                     <div>Finish Time:
-                    <%= time_field_tag :time2, nil, class: 'form-control', placeholder: "End Date (YYYY-MM-DD)", :required => 'required'%>
+                    <%= time_field_tag :time2, nil, class: 'form-control', placeholder: "Finish Time (YYYY-MM-DD)", :required => 'required'%>
                     </div>
                     <div>Break length: 
                     <%= text_field_tag :breaklength, nil, :required => 'required'%>
@@ -31,35 +31,40 @@
     <%end%>  
 
 
-<table>
+<table border = "1" style = "width:60%">
 <thead>
     <tr>
-    <th> Employee Name</th>
-    <th> Shift Date</th>
-    <th> Start Time</th>
-    <th> Finish Time</th>
-    <th> Break Length</th>
-    <th> Hours Worked</th>
-    <th> Shift Cost</th>
+    <th text-align: center> Employee Name</th>
+    <th text-align: center> Shift Date</th>
+    <th text-align: center> Start Time</th>
+    <th text-align: center> Finish Time</th>
+    <th text-align: center> Break Length (minutes)</th>
+    <th text-align: center> Hours Worked</th>
+    <th text-align: center> Shift Cost</th>
     </tr>
 </thead>
           
 <tbody>
+
+<% users = User.find_by_org_id(orgs.org_id) %>
 <% @shift.each do |shi| %>
-<% a = User.find_by_id(shi.user_id) %>
+<% a = User.find(shi.user_id) %>
 <% shiftlength = TimeDifference.between(shi.finish, shi.start).in_hours %>
 <% breaktime = (((shi.breaklength).to_f)/60) %>
 <% hoursworked = shiftlength - breaktime %>
 <% shiftcost = hoursworked * orgs.rate %>
+<% if shi.org_id == current_user.org_id %>
     <tr>
-    <td><%= a.name %></td>
-    <td><%= shi.date.strftime("%Y-%m-%d") %></td>
-    <td><%= shi.start.strftime("%H:%M") %></td>
-    <td><%= shi.finish.strftime("%H:%M") %></td>
-    <td><%= shi.breaklength %></td> 
-    <td><%= hoursworked %></td>
-    <td><%= shiftcost %></td>
+    <td text-align: center><%= a.name %></td>
+    <td text-align: center><%= shi.date.strftime("%Y-%m-%d") %></td>
+    <td text-align: center><%= shi.start.strftime("%H:%M") %></td>
+    <td text-align: center><%= shi.finish.strftime("%H:%M") %></td>
+    <td text-align: center><%= shi.breaklength %></td> 
+    <td text-align: center><%= hoursworked %></td>
+    <td text-align: center><%= shiftcost %></td>
     </tr>
 </tbody>
+<%else%>
+<%end%>
 <% end %>
 </table>

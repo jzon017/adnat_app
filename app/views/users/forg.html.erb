@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-centered" style="margin-top: 80px;">
+                    <% flash.each do |key, value|%>
+                        <div class="<%= flash_class(key)%> text-primary1" style="text-align: center;">
+                            <%= value %>
+                        </div>
+                    <% end %>
+            <%= form_tag '/forg' do %>
+                    Change Password</h5>
+                    <form class="form form-signup" role="form">
+                    <div class="form-group">
+                        <div class="input-group" id="eAdd">
+                            <%= text_field_tag :email, nil, placeholder: "E-mail", :required => 'required'%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" id="pWord">
+                            <%= password_field_tag :npassword, nil, placeholder: "New Password", :required => 'required'%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" id="cpWord">
+                            
+                            <%= password_field_tag :cnpassword, nil, placeholder: "Confirm New Password", :required => 'required'%>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Submit" id=".." name="enter" />
+                </form><% end %>
+        </div>
+    </div>
+</div>

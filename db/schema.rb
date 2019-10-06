@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20191005114557) do
     t.datetime "finish"
     t.integer "breaklength"
     t.datetime "date"
+    t.string "org_id", limit: 45
   end
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
