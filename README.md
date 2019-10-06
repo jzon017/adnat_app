@@ -1,24 +1,27 @@
 # README
+Video Link: https://youtu.be/UH_Ee9D9Dyk
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails Version 5.1.7
+Ruby Version 2.3.3p222
 
-Things you may want to cover:
+Database MySQL * = table; ** = column 
+* orgs table
+** org_id primary_key integer auto increment
+** orgname varchar(45)
+** rate float
 
-* Ruby version
+* users table
+** id primary_key integer auto increment
+** name varchar(45)
+** org_id varchar(45)
+** email varchar(45)
+** password_digest varchar(255)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* shifts table
+** shiftid primary_key integer auto increment
+** user_id varchar(45)
+** start datetime
+** finish datetime
+** breaklength integer
+** date datetime
+** org_id varchar(45)
