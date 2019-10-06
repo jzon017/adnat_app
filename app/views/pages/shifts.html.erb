@@ -5,7 +5,7 @@
 <% else %>
         redirect_to root_path
 <% end %>
-
+<% users = User.find_by(id: current_user.id) %>
 <% orgs = Org.find_by(org_id: current_user.org_id) %>
 <h2><%= orgs.orgname %></h2>
 
@@ -46,11 +46,10 @@
 <% @shift.each do |shi| %>
     <tr>
     <td><%= shi.id %></td>
-    <td><%= shi.shiftdate %></td>
+    <td><%= shi.date %></td>
     <td><%= shi.start %></td>
     <td><%= shi.finish %></td>
     <td><%= shi.breaktime %></td> 
-    <td><%= shi.hrsworked %></td>
     <td><%= shi.shiftcost %></td> 
     </tr>
 <% end %>

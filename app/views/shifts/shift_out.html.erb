@@ -29,8 +29,6 @@
         <%= submit_tag 'Submit' %>
     </form>
     <%end%>  
-
-
 <table>
 <thead>
     <tr>
@@ -46,19 +44,13 @@
           
 <tbody>
 <% @shift.each do |shi| %>
-<% a = User.find_by_id(shi.user_id) %>
-<% shiftlength = TimeDifference.between(shi.finish, shi.start).in_hours %>
-<% breaktime = (((shi.breaklength).to_f)/60) %>
-<% hoursworked = shiftlength - breaktime %>
-<% shiftcost = hoursworked * orgs.rate %>
     <tr>
-    <td><%= a.name %></td>
-    <td><%= shi.date.strftime("%Y-%m-%d") %></td>
-    <td><%= shi.start.strftime("%H:%M") %></td>
-    <td><%= shi.finish.strftime("%H:%M") %></td>
-    <td><%= shi.breaklength %></td> 
-    <td><%= hoursworked %></td>
-    <td><%= shiftcost %></td>
+    <td><%= shi.id %></td>
+    <td><%= shi.date %></td>
+    <td><%= shi.start %></td>
+    <td><%= shi.finish %></td>
+    <td><%= shi.breaktime %></td> 
+    <td><%= shi.shiftcost %></td> 
     </tr>
 </tbody>
 <% end %>

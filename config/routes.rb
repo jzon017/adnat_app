@@ -38,11 +38,13 @@ Rails.application.routes.draw do
   get 'editorg', to: 'pages#main'
   post 'editorg', to: 'pages#orgedit'
 
-  get 'shifts', to: 'shifts#shiftmain'
+  get 'shifts', to: 'shifts#add_shift'
   post 'shifts', to: 'shifts#add_shift'
 
-  get 'shifts', to: 'shifts#shift_out'
-  post 'shifts', to: 'shifts#shift_out'
+  get 'shift_out', to: 'shifts#shifts'
+  post 'shift_out', to: 'shifts#add_shift'
+  #get 'shifts', to: 'shifts#shift_out'
+  #post 'shifts', to: 'shifts#shift_out'
 
   match '/pages/delete', to: 'pages#delete', via: :delete
 

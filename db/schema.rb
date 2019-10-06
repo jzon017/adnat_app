@@ -12,16 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20191005114557) do
 
-  create_table "orgs", primary_key: "org_id", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "orgs", primary_key: "org_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "orgname", limit: 45
     t.float "rate", limit: 24
   end
 
-  create_table "shifts", primary_key: "shiftid", id: :integer, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "id"
+  create_table "shifts", primary_key: "shiftid", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "user_id", limit: 45
     t.datetime "start"
     t.datetime "finish"
     t.integer "breaklength"
+    t.datetime "date"
   end
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

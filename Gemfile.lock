@@ -144,6 +144,8 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    time_difference (0.7.0)
+      activesupport (~> 5.1)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -178,6 +180,7 @@ DEPENDENCIES
   rails (~> 5.1.7)
   sass-rails (~> 5.0)
   selenium-webdriver
+  time_difference
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
